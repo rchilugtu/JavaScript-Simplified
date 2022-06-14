@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Advanced Todo List</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
+
 <body>
   <ul id="list">
-    
+
   </ul>
-  
+
   <form id="new-todo-form">
     <label for="todo-input">New Todo</label>
     <input type="text" id="todo-input">
     <button type="submit">Add Todo</button>
   </form>
 
+  <!-- Everyting you write in this <template> tag does not get rendered.
+    but you can clone this template to show -->
   <template id="list-item-template">
     <li class="list-item">
       <label class="list-item-label">
@@ -25,4 +30,5 @@
     </li>
   </template>
 </body>
+
 </html>

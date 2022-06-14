@@ -14,3 +14,33 @@
 //    5. For each incorrect answer add the class `incorrect` to the parent with the class `question-item` and remove the class `correct`.
 //    6. BONUS: Make sure unanswered questions show up as incorrect. The easiest way to do this is to add the incorrect class and removing the correct class from all question items before checking the correct answers
 //    7. BONUS: If all answers are correct show the element with the id `alert` and hide it after one second (look into setTimeout) (use the class active to show the alert and remove the class to hide it)
+
+const form = document.querySelector("#quiz-form")
+const answerInputs = Array.from(document.querySelectorAll(".answer"))
+const alert = document.querySelector("#alert")
+const questionItems = document.querySelectorAll(".question-item")
+
+form.addEventListener('submit', e => {
+  e.preventDefault()
+
+  const selectedAnswers = answerInputs.filter(a => a.checked === true)
+  selectedAnswers.forEach(a => {
+    if (a.value === 'true') {
+      a.closest(".question-item").classList.add("correct")
+      a.closest(".question-item").classList.remove("incorrect")
+    } else {
+      a.closest(".question-item").classList.add("incorrect")
+      a.closest(".question-item").classList.remove("correct")
+    }
+  })
+
+  const allTrue = selectedAnswers.every(a => a.value === 'true')
+  const allAnswered = selectedAnswers.length === questionItems.length
+  if (allAnswered && allTrue) {
+    alert.classList.add("active")
+    setTimeout(() => {
+      alert.classList.remove("active")
+    }, "2000")
+  }
+})
+
